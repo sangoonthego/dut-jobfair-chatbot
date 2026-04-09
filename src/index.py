@@ -19,3 +19,11 @@ def get_index():
     index = load_index_from_storage(storage_context)
     logger.info(f"Finished loading index from {STORAGE_DIR}")
     return index
+
+def get_query_engine():
+    index = get_index()
+    if index is None:
+        logger.error("Index không tồn tại! Hãy chạy pipeline để tạo data trước.")
+        return None
+    # Ở đây ông có thể cấu hình thêm similarity_top_k để lấy bao nhiêu kết quả liên quan
+    return index.as_query_engine(similarity_top_k=3)

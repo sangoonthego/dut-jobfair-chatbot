@@ -43,7 +43,8 @@ def create_hybrid_query_engine(index):
     # Chọn ra 3 đoạn text (Nodes) xuất sắc nhất để đưa vào Context
     reranker = SentenceTransformerRerank(
         model="BAAI/bge-reranker-v2-m3", 
-        top_n=3 
+        top_n=3 ,
+        device="cpu"
     )
 
     # 5. Xây dựng Prompt "Kỷ luật thép"
